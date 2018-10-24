@@ -58,7 +58,7 @@ func init() {
 }
 
 func createUser(email string, password string) error {
-	createUserCmd := exec.Command("/bin/sh", "-c", "docker exec -it $(docker ps -q -f 'name=k8s_velum-dashboard') entrypoint.sh bash -c \"rake velum:create_user['"+email+"','"+password+"']\"")
+	createUserCmd := exec.Command("/bin/sh", "-c", "'docker exec -it $(docker ps -q -f 'name=k8s_velum-dashboard') entrypoint.sh bash -c \"rake velum:create_user['"+email+"','"+password+"']\"'")
 	fmt.Printf("%s", createUserCmd.Args)
 	b, err := createUserCmd.CombinedOutput()
 	if err != nil {
